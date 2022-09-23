@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+void F(int **a,int razmer,int top_pointx,int top_pointy,int n) {
+
+	if (top_pointy + razmer <= n && top_pointx + razmer <= n) {
+		for (int i = 0; i < n; i++) {
+			a[i] = new int[n];
+		}
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				a[i][j] = 0;
+			}
+		}		
+		for (int i = top_pointy; i < top_pointy+razmer; i++) {
+			for (int j = top_pointx; j <top_pointx+razmer; j++){
+
+				if (j == top_pointx && i != top_pointy + razmer-1) a[i][j] = 1;
+				if (j != top_pointx + razmer - 1 && i== top_pointy + razmer-2)a[i][j] = 1;
+				if(j == top_pointx + razmer - 2 && i != top_pointy + razmer - 1)a[i][j] = 1;
+				if(j== top_pointx + razmer-1 && i == top_pointy + razmer - 1)a[i][j] = 1;
+			
+				
+			}
+		}
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < n; j++) {
+				cout << a[i][j] << " ";
+			}
+			cout << endl;
+		}
+	}
+}
+
+int main(){
+	int** arr = new int* [10];
+	for (int i = 0; i < 10; i++) {
+		arr[i] = new int[10];
+	}
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			arr[i][j] = 0;
+		}
+	}
+	F(arr, 9, 1, 1, 10);
+}
+
